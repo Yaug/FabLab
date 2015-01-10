@@ -1,0 +1,45 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="sonata-ba-form">
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h4 class="box-title">Ajouter des thicoins</h4>
+                </div>
+                <div class="box-body">
+                    <div class="sonata-ba-collapsed-fields">
+                        <div class="form-group">
+                            {{ form_label(form.number) }}
+                            <div class="sonata-ba-field sonata-ba-field-standard-natural">
+                            {{ form_widget(form.number) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.targetUser) }}
+                            <div class="sonata-ba-field sonata-ba-field-standard-natural">
+                            {{ form_widget(form.targetUser) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.info) }}
+                            <div class="sonata-ba-field sonata-ba-field-standard-natural">
+                            {{ form_widget(form.info) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well well-small form-actions">
+        <button class="btn btn-success" type="submit" name="btn-add">
+            <i class="fa fa-save"></i> Ajouter
+        </button>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

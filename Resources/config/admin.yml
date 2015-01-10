@@ -1,0 +1,53 @@
+services:
+    fablab.thicoin.admin:
+        class: FabLab\ManagerBundle\Admin\ThicoinAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Thicoin" }
+        arguments:
+            - ~
+            - FabLab\ManagerBundle\Entity\Thicoin
+            - FabLabManagerBundle:CRUDThicoin
+        calls:
+            - [ setTranslationDomain, [messages]]
+            - [ addChild, ["@fablab.thicoinowner.admin"]]
+    fablab.thicoinowner.admin:
+        class: FabLab\ManagerBundle\Admin\ThicoinOwnerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Thicoin Owner" }
+        arguments:
+            - ~
+            - FabLab\ManagerBundle\Entity\ThicoinOwner
+            - ~
+        calls:
+            - [ setTranslationDomain, [messages]]
+    fablab.subscription.admin:
+        class: FabLab\ManagerBundle\Admin\SubscriptionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Cotisations" }
+        arguments:
+            - ~
+            - FabLab\ManagerBundle\Entity\Subscription
+            - ~
+        calls:
+            - [ setTranslationDomain, [messages]]
+    fablab.machine.admin:
+        class: FabLab\ManagerBundle\Admin\MachineAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Machines" }
+        arguments:
+            - ~
+            - FabLab\ManagerBundle\Entity\Machine
+            - ~
+        calls:
+            - [ setTranslationDomain, [messages]]
+    fablab.manager.admin:
+        class: FabLab\ManagerBundle\Admin\ManagerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Faciliteur" }
+        arguments:
+            - ~
+            - FabLab\ManagerBundle\Entity\Manager
+            - ~
+        calls:
+            - [ setTranslationDomain, [messages]]
+

@@ -1,0 +1,33 @@
+services:
+    fablab.thicoin.subscriber:
+        class: FabLab\ManagerBundle\Listener\ThicoinSubscriber
+        arguments: ["@service_container"]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        
+# =============
+#   F O R M S
+# =============
+            
+    fablab.addthicoins.form:
+        class: FabLab\ManagerBundle\Form\Type\AddThicoinsType
+        tags:
+          - { name: form.type, alias: add_thicoins_form }
+        
+# =================
+#  M A N A G E R S
+# =================
+    fablab.thicoin.manager:
+        class: FabLab\ManagerBundle\Manager\ThicoinManager
+        arguments: 
+          entityManager: "@doctrine.orm.entity_manager"
+            
+            
+# =============
+#  B L O C K S
+# =============
+    fablab.thicoin.block.recent:
+        class: FabLab\ManagerBundle\Block\RecentThicoinBlockService
+        tags:
+            - { name: sonata.block }
+        arguments: ["fablab.thicoin.block.recent", "@templating", "@fablab.thicoin.manager"]

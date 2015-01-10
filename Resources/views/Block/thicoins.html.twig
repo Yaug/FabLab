@@ -1,0 +1,40 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="sonata-news-block-recent-comment panel panel-default">
+        {% if settings.title %}
+            <div class="panel-heading">
+                <h3 class="panel-title sonata-news-block-recent-comment"><i class="fa fa-comments fa-fw"></i> {{ settings.title }}</h3>
+            </div>
+        {% endif %}
+
+        <div class="panel-body">
+
+            <div class="sonata-blog-post-container list-group">
+                <table class="table table-condensed">
+                <tbody>
+                {% for item in listing %}
+                    <tr>
+                        <td>
+                        <a class="btn-link" href="{{ url('admin_fablab_manager_thicoin_edit', { 'id': item.id }) }}">
+                            <i class="fa fa-fw fa-money"></i> {{ item.code | slice(0, 32) ~ '...' }}
+                        </a>
+                        <br />
+                        {{ item.createdAt | date("d/m/Y H:i:s") }} - 
+                        {% if item.currentUser is not empty %}
+                                <a href="{{ url('admin_sonata_user_user_edit', {'id': item.currentUser.id}) }}" class="btn-link">{{ item.currentUser.username }}</a>
+                            {% else %}
+                                <span>no owner</span>
+                            {% endif %}</td>
+                    </tr>
+                {% else %}
+                    Aucun thicoin récent
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+            <a href="{{ url('admin_fablab_manager_thicoin_list') }}" class="btn btn-primary btn-block">Voir tous les thicoins</a>
+            <a href="fablab/manager/thicoin/add" class="btn btn-info btn-block">Ajouter des thicoins</a>
+        </div>
+    </div>
+{% endblock %}
